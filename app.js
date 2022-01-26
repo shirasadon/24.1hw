@@ -3,14 +3,24 @@ const app = express();
 const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const client = require("./models/client");
+const Client = require("./models/client");
 const order = require("./models/order");
 const store = require("./models/store");
+
+var mongoDB = "mongodb://127.0.0.1/ten-wolt";
+mongoose
+  .connect(mongoDB)
+  .then(() => {
+    app.listen(port, () => {
+      console.log(`Example app listening at http://localhost:${port}`);
+    });
+  })
+  .catch((e) => console.error(e));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.json());
-var mongoDB = "mongodb://127.0.0.1/ten-wolt";
+
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -20,17 +30,18 @@ app.post("/order", (req, res) => {
   res.send("order");
 });
 
-app.post("/client", (req, res) => {
+app.post("/client.html", (req, res) => {
   res.send("client!");
   let name = req.body.name,
-    aderss = req.body.adress,
+    adress = req.body.adress,
     isvip = req.body.isvip,
     phone = req.body.phone;
-  let newclient = new client({
-    name: name,
-    adress: aderss,
-    isvip: isvip,
-    phone: phone,
+    console.log(name,adress,isvip,phone);
+  let newclient = new Client({
+    name,
+    adress,
+    isvip,
+    phone
   });
   newclient.save((err, data) => {
     console.log(err);
@@ -90,11 +101,4 @@ app.post("/client", (req, res) => {
     });
   });
 });
-mongoose
-  .connect(mongoDB)
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`Example app listening at http://localhost:${port}`);
-    });
-  })
-  .catch((e) => console.error(e));
+

@@ -15,9 +15,9 @@ const client = mongoose.model(
         required: true,
         type: String,
       },
-      isVip: {
+      isvip: {
         required: true,
-        type: Boolean,
+        type: String
       },
       phone:{
         required: true,

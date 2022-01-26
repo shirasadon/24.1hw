@@ -19,9 +19,9 @@
       $('[data-role="btn"]').click(function () {
           let name = $('[data-role="name"]').val();
           let adress = $('[data-role="adress"]').val();
-          let isvip = $('[data-role="isvip"]').val();
+         let isvip = $('[data-role="isvip"]').val();
           let phone = $('[data-role="phone"]').val();
-          $.post( "/client", {name,adress,isvip,phone},function( data ) { 
+          $.post( "/client.html", {name,adress,isvip,phone},function( data ) { 
           console.log("u are succsecfull")
         });
 
