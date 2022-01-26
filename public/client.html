@@ -14,28 +14,33 @@
     <input data-role="phone" type="text" placeholder="phone" />
     <input data-role="btn" type="button" value="send" />
     <script>
-
       $(function () {
-      $('[data-role="btn"]').click(function () {
+        $('[data-role="btn"]').click(function () {
           let name = $('[data-role="name"]').val();
           let adress = $('[data-role="adress"]').val();
-         let isvip = $('[data-role="isvip"]').val();
+          let isvip = $('[data-role="isvip"]').val();
           let phone = $('[data-role="phone"]').val();
-          $.post( "/client.html", {name,adress,isvip,phone},function( data ) { 
-          console.log("u are succsecfull")
+          $.post(
+            "/client.html",
+            { name, adress, isvip, phone },
+            function (data) {
+              console.log("u are succsecfull");
+            }
+          );
         });
-
+        $.get("/getclient", function (data) {
+          console.log(data);
         });
-      });
-
        
-        // $.get( "ajax/test.html", function( data ) {
-        //   $( ".result" ).html( data );
-        //   alert( "Load was performed." );
-
+       
           
-        // });
-         
+        $.ajax({
+          type: "PUT",
+          url: "/upclient/:id",
+          data: { event_name: change },
+        })
+      })
+      
     </script>
   </body>
 </html>
