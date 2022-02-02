@@ -1,39 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-    <input type="text" data-role="Cname">client name
-    <input type="text" data-role="Sname">store name
-  <button data-role="btn">click to insert</button>
-    
+  </head>
+  <body>
+    <input type="text" data-role="Cname" placeholder="client" />
+    <input type="text" data-role="Sname" placeholder="store" />
+    <button data-role="btn">click to insert</button>
     <script>
-        $(function(){
-let btn = $("[data-role=btn]").click(function(){
-    let Cname = $("[data-role=Cname]").val()
-let Sname = $("[data-role=Sname]").val()
-})
+      $(function () {
+        let btn = $("[data-role=btn]").click(function () {
+          let client = $("[data-role=Cname]").val();
+          let store = $("[data-role=Sname]").val();
+          $.post("/order.html", { client, store }, function (data) {
+            console.log(data);
+          });
+        });
+
+        $.get("getorders", function (data) {
+          console.log(data);
+        });
+
+        $.get("uporder/:id", function (data) {
+          console.log(data);
+        });
 
 
-
-
-
-            $.post( "ajax/test.html", function( data ) {
-  $( ".result" ).html( data );
-});
-      
-$.get( "ajax/test.html", function( data ) {
-  $( ".result" ).html( data );
-  alert( "Load was performed." );
-});
-
-})
+      });
     </script>
-</body>
+  </body>
 </html>

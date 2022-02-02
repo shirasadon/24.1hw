@@ -1,24 +1,21 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-const gradesSchema = Schema
+const orderSchema = Schema
 const order = mongoose.model(
   "Order",
   new mongoose.Schema(
     {
       client: {
           type: Schema.Types.ObjectId,
-          ref: "client",
-        required: true,
+          ref: "Client",
+        // required: true,
       },
       store: {
-        type:  Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "store",
-      required: true,
-      },
-      timestemp: {
-        required: true,
-        type: String,
-      },
+      // required: true,
+      }
+     
     },
     { timestamps: true }
   )

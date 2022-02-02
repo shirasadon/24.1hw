@@ -16,10 +16,6 @@ const store = mongoose.model(
       phone: {
         required: true,
         type: String,
-      },
-      order_ref:{
-        type:  Schema.Types.ObjectId,
-        ref: "order",
       }
     }  )
 );

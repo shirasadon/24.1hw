@@ -3,7 +3,6 @@
 const clientSchema = Schema
 const client = mongoose.model(
 
-  
   "Client",
   new mongoose.Schema(
     {

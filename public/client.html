@@ -13,33 +13,62 @@
     <input data-role="isvip" type="text" />
     <input data-role="phone" type="text" placeholder="phone" />
     <input data-role="btn" type="button" value="send" />
+    <input data-role="update" type="button" value="update" /><br>
+    <input data-role="getAll" type="button" value="get all clients" />
+
+    <input data-role="id" type="text" placeholder="theId" />
+    <input data-role="button" type="button" value="get the client" />
     <script>
-      $(function () {
-        $('[data-role="btn"]').click(function () {
+      // $(function () {
+      //   $('[data-role="btn"]').click(function () {
+      //     let name = $('[data-role="name"]').val();
+      //     let adress = $('[data-role="adress"]').val();
+      //     let isvip = $('[data-role="isvip"]').val();
+      //     let phone = $('[data-role="phone"]').val();
+
+      //     $.post(
+      //       "/client.html",
+      //       { name, adress, isvip, phone },
+      //       function (data) {
+      //         console.log("u are succsecfull");
+      //       }
+      //     );
+      //   });
+
+      $('[data-role="button"]').click(function () {
+        $.get("/client.html", function (data) {
+          console.log(data);
+        });
+      })
+        // $(function () {
+        $('[data-role="button"]').click(function () {
+          let id = $('[data-role="id"]').val();
+          console.log(id);
+          $.put(
+            "/client.html",{id},
+            function (data) {
+              
+            }
+          );
+        // });
+        
+        $('[data-role="update"]').click(function (){
           let name = $('[data-role="name"]').val();
           let adress = $('[data-role="adress"]').val();
           let isvip = $('[data-role="isvip"]').val();
           let phone = $('[data-role="phone"]').val();
-          $.post(
-            "/client.html",
-            { name, adress, isvip, phone },
-            function (data) {
-              console.log("u are succsecfull");
-            }
-          );
-        });
-        $.get("/getclient", function (data) {
-          console.log(data);
-        });
-       
-       
+
+        //   $.ajax({
+        //   type: "PUT",
+        //   url: "/client.html/:id",
+        //   data: { name,adress,isvip,phone }
           
-        $.ajax({
-          type: "PUT",
-          url: "/upclient/:id",
-          data: { event_name: change },
+        // })
+        // console.log(data)
         })
-      })
+          
+       
+       })
       
     </script>
   </body>
